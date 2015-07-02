@@ -30,7 +30,9 @@ ministore_App.controller('customersController', function (customerFactory){
       that.removeCust = function (customer){
         //that.customers.splice(that.customers.indexOf(customer),1);
           customerFactory.delCustomer(customer, function(customers){
-              that.customers = customers;
+            customerFactory.getCustomers(function (data){
+                that.customers = data;
+            })
           })
     }
 

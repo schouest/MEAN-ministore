@@ -1,9 +1,6 @@
-//add the following two lines at the top of the friends controller so we can access our model through var Friend
-// need to require mongoose to be able to run mongoose.model()
 var mongoose = require('mongoose');
 var Customer = mongoose.model('Customer');
 
-// note the immediate function and the object that is returned
 module.exports = (function() {
   return {
     show: function(req, res) {
@@ -30,11 +27,9 @@ module.exports = (function() {
 
         })
     },
-/*
+
     remove: function(req, res) {
-    	console.log('died in backside customers controller', req.body);
-        console.log('req: ', req.params.id);
-        Friend.remove({_id: req.params.id}, function(err, results) {
+        Customer.remove({_id: req.params.id}, function(err, results) {
             if(err){
                 console.log(err);
             } else{
@@ -42,7 +37,6 @@ module.exports = (function() {
             }
 
         })
-    }*/
+    }
   }
 })();
-// note that this is just a code snippet of the show method from the object returned in the controller (this includes the exports module.exports

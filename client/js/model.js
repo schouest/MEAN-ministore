@@ -21,10 +21,14 @@ ministore_App.factory('customerFactory', function ($http){
     }
 
 	factory.delCustomer = function (deleteCustomer, callback){
-			if(customers.indexOf(deleteCustomer) != -1){
+			//console.log(deleteCustomer, customers.indexOf(deleteCustomer));
+			/*if(customers.indexOf(deleteCustomer) != -1){
 				customers.splice(customers.indexOf(deleteCustomer),1);
-			}
-			callback(customers);
+			}*/
+			$http.get('/delete/'+deleteCustomer._id).success(function(){
+			    callback();
+			 })
+			//callback(customers);
 		   
 
 
