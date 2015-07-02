@@ -14,14 +14,24 @@ ministore_App.controller('customersController', function (customerFactory){
                 return false;
               }
         }
-        that.newCustomer.addDate = new Date;
-		    that.customers.push(that.newCustomer); // add to the array	    
-		    that.newCustomer = {};// clear the form values
+        that.newCustomer.addDate = new Date();
+        customerFactory.addCustomer(that.newCustomer,function (){
+            that.newCustomer = {};// clear the form values
+            customerFactory.getCustomers(function (data){
+                that.customers = data;
+            })
+        })
+
+
+//		    that.customers.push(that.newCustomer); // add to the array	    
         that.error_txt = '';//reset error text
 		}
 
       that.removeCust = function (customer){
-        that.customers.splice(that.customers.indexOf(customer),1);
+        //that.customers.splice(that.customers.indexOf(customer),1);
+          customerFactory.delCustomer(customer, function(customers){
+              that.customers = customers;
+          })
     }
 
       });
@@ -44,7 +54,7 @@ ministore_App.controller('ordersController', function (orderFactory){
                 return false;
               }
         }
-        that.newOrder.addDate = new Date;
+        that.newOrder.addDate = new Date();
         that.orders.push(that.newOrder); // add to the array      
         that.newOrder = {};// clear the form values
         that.error_txt = '';//reset error text
