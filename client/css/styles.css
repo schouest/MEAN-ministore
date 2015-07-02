@@ -5,3 +5,31 @@
 textarea{
 	resize:none;
 }
+
+.prodblock{
+	display: inline-block;
+	padding: 20px;
+	width: 175px;
+	text-align: center;
+}
+
+#prodcontent{
+	vertical-align: top;
+    display: inline-block;
+    position: absolute;
+}
+
+#addform{
+	display: inline-block;
+	height: 100%;
+    width: 20%;
+    margin-top: 30px;
+}
+
+#addform input{
+	width: 200px;
+}
+
+.prodblock img {
+    max-width: 200px;
+}

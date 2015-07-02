@@ -1,29 +1,30 @@
 <div ng-controller='productsController as Products'>
-<h3>Add a New Product</h3>
- <label>Search: <input type='text' ng-model='filter_name' placeholder='search...'></label>
-<form>
-	   <h1><span ng-bind='Products.error_txt'></span></h1>
-	<label>Name: <input type='text' ng-model='Products.newProduct.name'></label>
+
+
+<form id='addform'>
+	 <label>Search:<br><input type='text' ng-model='filter_name' placeholder='search...'></label>
+	 <h3>Add a New Product</h3>
+	<h1><span ng-bind='Products.error_txt'></span></h1>
+	<label>Name:<br><input type='text' ng-model='Products.newProduct.name'></label><br>
     <input type='hidden' value='3' ng-model='Products.newProduct.addDate'>
-    <label>Image (url): <input type='text' ng-model='Products.newProduct.imgurl' placeholder='http://'></label>
-    <label>Description: <textarea ng-model='Products.newProduct.desc'></textarea></label>    
-    <label>Initial Quantity: <input type='number' ng-model='Products.newProduct.icount'></label>
-    <input type='submit' value='add product' ng-click='Products.addProd()'>
+    <label>Image (url):<br><input type='text' ng-model='Products.newProduct.imgurl' placeholder='http://'></label><br>
+    <label>Description:<br><textarea ng-model='Products.newProduct.desc' rows='10' cols='25'></textarea></label><br>    
+    <label>Initial Quantity:<br><input type='number' ng-model='Products.newProduct.icount'></label><br>
+    <input type='submit' value='Create Product' ng-click='Products.addProd()'>
 </form>
-<!-- <img src='https://help.github.com/assets/images/site/create-a-repo.gif' alt=''>
+<div id='prodcontent'>
+<div class='prodblock' ng-repeat="product in Products.products | filter:filter_name | orderBy:'addDate'">
+		<img ng-src="{{product.imgurl}}" alt="Picture of {{product.name}}">
+        <p ng-bind='product.name'></p>
+        <p ng-bind="'(' + product.icount + ' left)'"></p>
+</div>
+<div class='prodblock'>
+    <img src='http://i1.wp.com/www.crashwiki.com/wp-content/plugins/rage-avatars/avatars/006-me-gusta.png' alt=''>
+    <p>Prod Name</p>
+    <p>(# Left)</p>
+</div>
 
+</div>
 
- -->
+</div>
 
-<table>
-    <tr>
-      <th>Product Name</th>
-      <th>Created Date</th>
-      <th>Actions</th>
-    </tr>
-    <tr ng-repeat="product in Products.products | filter:filter_name | orderBy:'addDate'">
-        <td><span ng-bind='product.name'></span></td>
-        <td><span ng-bind="product.addDate | date:'MMM/dd/yyyy'"></span></td>
-        <td>REMOVE</td>
-    </tr>
-</table></div>

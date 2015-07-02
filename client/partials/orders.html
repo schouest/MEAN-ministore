@@ -10,13 +10,11 @@
     </select></label>
  </div> 
    <input type='hidden' value='33' ng-model='Orders.newOrder.addDate'>
-
+<div ng-controller='productsController as Products'>
      <label>Order Name: <select ng-model='Orders.newOrder.pname'>
-     	<option value="Nike Shoes">Nike Shoes</option>
-     	<option value="Black Belts">Black Belts</option>
-     	<option value="Ice Cream">Ice Cream</option>
-     	<option value="Candy">Candy</option>
+     	<option ng-repeat='product in Products.products' ng-value='product.name'>{{product.name}}</option>
      </select></label>
+</div>
     <label>Quantity: <input type='number' ng-model='Orders.newOrder.count'></label>
 
     <input type='submit' value='Place Order' ng-click='Orders.addOrder()'>
