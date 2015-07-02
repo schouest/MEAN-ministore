@@ -1,40 +1,40 @@
-<div ng-controller='productsController as Products'>
+<div ng-controller='ordersController as Orders'>
 <h3>Add a New Order</h3>
 <div ng-controller='customersController as Customers'>
 <form>
-    <h1><span ng-bind='error_txt'></span></h1>
-    <label>Customer Name: <select ng-model='Products.newProduct.cname'>
+    <h1><span ng-bind='Orders.error_txt'></span></h1>
+    <label>Customer Name: <select ng-model='Orders.newOrder.cname'>
     	<option value="">Choose Customer</option>
     	<option ng-repeat="customer in Customers.customers" ng-value='customer.name'>{{customer.name}}</option>
 
     </select></label>
  </div> 
-   <input type='hidden' value='33' ng-model='Products.newProduct.addDate'>
+   <input type='hidden' value='33' ng-model='Orders.newOrder.addDate'>
 
-     <label>Product Name: <select ng-model='Products.newProduct.pname'>
+     <label>Order Name: <select ng-model='Orders.newOrder.pname'>
      	<option value="Nike Shoes">Nike Shoes</option>
      	<option value="Black Belts">Black Belts</option>
      	<option value="Ice Cream">Ice Cream</option>
      	<option value="Candy">Candy</option>
      </select></label>
-    <label>Quantity: <input type='number' ng-model='Products.newProduct.count'></label>
+    <label>Quantity: <input type='number' ng-model='Orders.newOrder.count'></label>
 
-    <input type='submit' value='Place Order' ng-click='Products.addProd()'>
+    <input type='submit' value='Place Order' ng-click='Orders.addProd()'>
 </form>
 
 
 <table>
     <tr>
       <th>Customer Name</th>
-      <th>Product</th>
+      <th>Order</th>
       <th>Quantity</th>
       <th>Date</th>
     </tr>
-    <tr ng-repeat="product in Products.products | filter:filter_name | orderBy:'addDate'">
-        <td><span ng-bind='product.cname'></span></td>
-        <td><span ng-bind='product.pname'></span></td>
-        <td><span ng-bind='product.count'></span></td>
-        <td><span ng-bind="product.addDate | date:'MMM/dd/yyyy'"></span></td>
+    <tr ng-repeat="order in Orders.orders | filter:filter_name | orderBy:'addDate'">
+        <td><span ng-bind='order.cname'></span></td>
+        <td><span ng-bind='order.pname'></span></td>
+        <td><span ng-bind='order.count'></span></td>
+        <td><span ng-bind="order.addDate | date:'MMM/dd/yyyy'"></span></td>
     </tr>
 </table>
 <label>Search: <input type='text' ng-model='filter_name' placeholder='filter results'></label>

@@ -2,7 +2,7 @@
 
         	<h3>Add a New Customer</h3>
 <form>
-    <h1><span ng-bind='error_txt'></span></h1>
+    <h1><span ng-bind='Customers.error_txt'></span></h1>
     <label>Name: <input type='text' ng-model='Customers.newCustomer.name'></label>
     <input type='hidden' value='3' ng-model='Customers.newCustomer.addDate'>
     <input type='submit' value='add new customer' ng-click='Customers.addCust()'>

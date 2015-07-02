@@ -4,8 +4,12 @@
 // This is our routes.js file located in /config/routes.js
   // We will have to require this in the server.js file and pass it app
   module.exports = (function(app) {
-    app.get('/friends', function(req, res) {
+    app.get('/orders', function(req, res) {
     	friends.show(req, res);
+    });
+
+    app.get('/customers', function(req, res) {
+      friends.show(req, res);
     });
 
     app.post('/add', function(req, res) {
