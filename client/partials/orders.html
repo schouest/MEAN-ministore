@@ -1,4 +1,4 @@
-
+<div ng-controller='ordersController as Orders'>
 <h3>Add a New Order</h3>
 <div ng-controller='customersController as Customers'>
 <form>
@@ -19,9 +19,8 @@
      </select></label>
     <label>Quantity: <input type='number' ng-model='Orders.newOrder.count'></label>
 
-    <input type='submit' value='Place Order' ng-click='Orders.addProd()'>
+    <input type='submit' value='Place Order' ng-click='Orders.addOrder()'>
 </form>
-
 
 <table>
     <tr>

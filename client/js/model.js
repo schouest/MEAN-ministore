@@ -14,10 +14,7 @@ ministore_App.factory('customerFactory', function ($http){
     	//customers.push(newCustomer);
     	$http.post('/addcust', newCustomer).success(function() {
 			    callback();
-			    console.log('success in front end model addCustomer');
 	  	})
-
-
     }
 
 	factory.delCustomer = function (deleteCustomer, callback){
@@ -29,20 +26,40 @@ ministore_App.factory('customerFactory', function ($http){
 			    callback();
 			 })
 			//callback(customers);
-		   
-
-
 	}    
     return factory
 });
 
-ministore_App.factory('orderFactory', function (){
+ministore_App.factory('orderFactory', function ($http){
     var orders = [];
     var factory = {};
-    // add a get method to the object we defined
     factory.getOrders = function (callback){
-        // pass the object to a callback to be used by whoever calls the method
-        callback(orders);
+        $http.get('/orders').success(function(output){
+        	callback(output);
+        })
+    }
+
+    factory.addOrder = function (newOrder, callback){
+    	$http.post('/addOrder', newOrder).success(function() {
+    		callback();
+    	})
+    }
+    return factory
+});
+
+ministore_App.factory('productFactory', function ($http){
+    var products = [{name: 'test'}];
+    var factory = {};
+    factory.getProducts = function (callback){
+        $http.get('/products').success(function(output){
+            callback(output);
+        })
+    }
+
+    factory.addProduct = function (newProduct, callback){
+        $http.post('/addProduct', newProduct).success(function() {
+            callback();
+        })
     }
     return factory
 });
