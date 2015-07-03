@@ -73,10 +73,11 @@ ministore_App.controller('ordersController', function (orderFactory){
 
         that.newOrder.addDate = new Date();
         orderFactory.addOrder(that.newOrder, function (){
-            that.newOrder = {};// clear the form values
-            orderFactory.getOrders(function (data){
+              that.newOrder = {};// clear the form values
+               orderFactory.getOrders(function (data){
                   that.orders = data;
-              })  
+              })
+                
         })
         that.error_txt = '';//reset error text
     }
@@ -124,6 +125,12 @@ ministore_App.controller('productsController', function (productFactory){
               })  
         })
         that.error_txt = '';//reset error text
+    }
+
+    that.hidecount = true;
+    that.getMax = function(param){
+      that.invcount = param;
+      that.hidecount = false;
     }
 
       });

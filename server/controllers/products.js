@@ -10,9 +10,7 @@ module.exports = (function() {
     		} else{
     			res.json(results);
     		}
-
     	})
-
     },
 
     add: function(req, res) {
@@ -24,11 +22,14 @@ module.exports = (function() {
             } else{
                 res.redirect('/');
             }
-
         })
     },
 
-    remove: function(req, res) {
+    
+
+
+
+    /*remove: function(req, res) {
         Product.remove({_id: req.params.id}, function(err, results) {
             if(err){
                 console.log(err);
@@ -37,6 +38,6 @@ module.exports = (function() {
             }
 
         })
-    }
+    }*/
   }
 })();

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Order = mongoose.model('Order');
+var Product = mongoose.model('Product');
 
 module.exports = (function() {
   return {
@@ -17,16 +18,48 @@ module.exports = (function() {
     add: function(req, res) {
 
         var newOrder = new Order(req.body)
-        newOrder.save(function(err) {
+        console.log('neworder: ',newOrder);
+
+        Product.find({name: newOrder.pname}, function(err, results) {
             if(err){
                 console.log(err);
             } else{
-                res.redirect('/');
+                //console.log('icount',results[0].icount);
+                if(results[0].icount < newOrder.count){
+                    console.log('ERROR: BUY EXCEEDS TOTAL STOCK');
+                }
+                else{
+                    console.log('success results: ',results);
+                    
+                    tempname = results[0].name;
+                    tempvar = results[0].icount - newOrder.count;
+                    console.log(tempname, tempvar);
+
+                    Product.findOneAndUpdate({name: tempname}, {icount: tempvar}, function(err, data){
+                        if (err){
+                            console.log('got an error');
+                        }
+                        else{
+                            newOrder.save(function(err) {
+                                if(err){
+                                    console.log(err);
+                                } else{
+                                    res.redirect('/');
+                                }
+                             })  
+                        }
+                    });
+   
+                }
+
+                //res.json(results);
             }
+
         })
+        
     },
 
-    remove: function(req, res) {
+    /*remove: function(req, res) {
         Order.remove({_id: req.params.id}, function(err, results) {
             if(err){
                 console.log(err);
@@ -34,6 +67,6 @@ module.exports = (function() {
                 res.redirect('/');
             }
         })
-    }
+    }*/
   }
 })();

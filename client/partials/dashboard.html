@@ -1,1 +1,37 @@
-<h1>dashboard</h1>
+<form id='addform'>
+	 <label>Search:<br><input type='text' ng-model='filter_name' placeholder='search...'></label>
+</form>
+
+<div  id='prodcontent'>
+<div ng-controller='productsController as Products'>
+
+<div class='prodblock' ng-repeat="product in Products.products | limitTo:5 | filter:filter_name | orderBy:'addDate'">
+		<img ng-src="{{product.imgurl}}" alt="Picture of {{product.name}}">
+        <p ng-bind='product.name'></p>
+        <p ng-bind="'(' + product.icount + ' left)'"></p>
+</div>
+<br>
+<a href='#/products'>show more...</a>
+</div>
+
+
+<div ng-controller='ordersController as Orders'>
+<h4>Recent Orders</h4>
+<ul>
+	<li ng-repeat="order in Orders.orders | limitTo:3"><span ng-bind="order.cname + ' purchased ' + order.count + ' ' + order.pname + '(s) '"></span><span am-time-ago="order.addDate" ></span></li>
+</ul>
+
+
+<a href='#/orders'>show more...</a>
+</div>
+
+
+<div ng-controller='customersController as Customers'>
+<h4>Recent Customers</h4>
+<ul>
+	<li ng-repeat="customer in Customers.customers | limitTo:3"><span ng-bind="customer.name + ' joined the store '"></span><span am-time-ago="customer.addDate" ></span></li>
+</ul>
+
+<a href='#/customers'>show more...</a>
+</div>
+</div>

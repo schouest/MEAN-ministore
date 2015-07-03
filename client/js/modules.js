@@ -1,4 +1,4 @@
-var ministore_App = angular.module('ministore_App', ['ngRoute']);
+var ministore_App = angular.module('ministore_App', ['ngRoute','angularMoment']);
 
 ministore_App.config(function ($routeProvider){
 	$routeProvider
