@@ -25,19 +25,5 @@ module.exports = (function() {
         })
     },
 
-    
-
-
-
-    /*remove: function(req, res) {
-        Product.remove({_id: req.params.id}, function(err, results) {
-            if(err){
-                console.log(err);
-            } else{
-                res.redirect('/');
-            }
-
-        })
-    }*/
   }
 })();

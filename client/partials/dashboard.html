@@ -1,8 +1,8 @@
 <form id='addform'>
-	 <label>Search:<br><input type='text' ng-model='filter_name' placeholder='search...'></label>
+	 <label id='searchbar'>Search:<br><input type='text' ng-model='filter_name' placeholder='search...'></label>
 </form>
 
-<div  id='prodcontent'>
+<div  id='content'>
 <div ng-controller='productsController as Products'>
 
 <div class='prodblock' ng-repeat="product in Products.products | limitTo:5 | filter:filter_name | orderBy:'addDate'">

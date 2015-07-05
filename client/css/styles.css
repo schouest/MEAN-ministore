@@ -2,6 +2,10 @@
 	/*outline:1px red dotted;*/
 }
 
+body{
+	background-color: #788595;
+}
+
 textarea{
 	resize:none;
 }
@@ -13,7 +17,7 @@ textarea{
 	text-align: center;
 }
 
-#prodcontent{
+#content{
 	vertical-align: top;
     display: inline-block;
     position: absolute;
@@ -33,4 +37,9 @@ textarea{
 
 .prodblock img {
     max-width: 200px;
+}
+
+#searchbar{
+	font-size: 13pt;
+	font-family: sans-serif;
 }

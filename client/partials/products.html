@@ -2,7 +2,7 @@
 
 
 <form id='addform'>
-	 <label>Search:<br><input type='text' ng-model='filter_name' placeholder='search...'></label>
+	 <label id='searchbar'>Search:<br><input type='text' ng-model='filter_name' placeholder='search...'></label>
 	 <h3>Add a New Product</h3>
 	<h1><span ng-bind='Products.error_txt'></span></h1>
 	<label>Name:<br><input type='text' ng-model='Products.newProduct.name'></label><br>
@@ -12,7 +12,7 @@
     <label>Initial Quantity:<br><input type='number' ng-model='Products.newProduct.icount' min='1'></label><br>
     <input type='submit' value='Create Product' ng-click='Products.addProd()'>
 </form>
-<div id='prodcontent'>
+<div id='content'>
 <div class='prodblock' ng-repeat="product in Products.products | filter:filter_name | orderBy:'addDate'">
 		<img ng-src="{{product.imgurl}}" alt="Picture of {{product.name}}">
         <p ng-bind='product.name'></p>

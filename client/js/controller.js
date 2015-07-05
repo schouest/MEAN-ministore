@@ -77,19 +77,27 @@ ministore_App.controller('ordersController', function (orderFactory){
                orderFactory.getOrders(function (data){
                   that.orders = data;
               })
-                
+              getProducts();
+   
         })
+
         that.error_txt = '';//reset error text
     }
 
-      });
+});
 
 ministore_App.controller('productsController', function (productFactory){
         var that = this;
           that.products = [];
-          productFactory.getProducts(function (data){
+          getProducts = function(){
+
+              productFactory.getProducts(function (data){
               that.products = data;
-          })
+             })
+
+          }
+          getProducts();
+          
             
       that.addProd = function (){
 
@@ -125,6 +133,8 @@ ministore_App.controller('productsController', function (productFactory){
               })  
         })
         that.error_txt = '';//reset error text
+        that.hidecount = true; //hide now outdated quantity of selected item !!!! doesn't work
+
     }
 
     that.hidecount = true;
