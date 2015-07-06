@@ -12,7 +12,6 @@ module.exports = (function() {
     			res.json(results);
     		}
     	})
-
     },
 
     add: function(req, res) {
@@ -45,14 +44,10 @@ module.exports = (function() {
                                 }
                              }) 
                         }
-                    });
-   
+                    });  
                 }
-
             }
-
-        })
-        
+        })        
     },
   }
 })();

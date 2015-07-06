@@ -63,8 +63,6 @@ ministore_App.controller('ordersController', function (orderFactory){
                 that.error_txt = 'ERROR: Invalid Quantity';
                 return false;
               }
-              //console.log('oldorder pname',that.orders[i].pname)
-              //console.log('neworder pname',that.newOrder.pname)
               if(that.orders[i].pname == that.newOrder.pname.name
                 && that.orders[i].cname == that.newOrder.cname){
                 console.log("ERROR: USER ALREADY PLACED ORDER");
@@ -76,37 +74,24 @@ ministore_App.controller('ordersController', function (orderFactory){
         that.newOrder.addDate = new Date();
 
         that.newOrder.pname = that.newOrder.pname.name;
-        //console.log('pname in client controller ',that.newOrder.pname)
-
-
-
-
-
         orderFactory.addOrder(that.newOrder, function (){
               that.newOrder = {};// clear the form values
                orderFactory.getOrders(function (data){
                   that.orders = data;
               })
               getProducts();
-        that.hidecount = true; //hide now outdated quantity of selected item !!!! doesn't work
-
-   
         })
-
         that.error_txt = '';//reset error text
     }
-
 });
 
 ministore_App.controller('productsController', function (productFactory){
         var that = this;
           that.products = [];
           getProducts = function(){
-
               productFactory.getProducts(function (data){
               that.products = data;
              })
-
           }
           getProducts();
           
@@ -146,13 +131,6 @@ ministore_App.controller('productsController', function (productFactory){
         })
         that.error_txt = '';//reset error text
 
-    }
-
-    that.hidecount = true;
-    that.getMax = function(param){
-      //console.log('Orders.newOrder= ',param);
-      //that.invcount = param;
-      that.hidecount = false;
     }
 
       });

@@ -6,23 +6,15 @@
     <label>Customer Name: <select ng-model='Orders.newOrder.cname'>
     	<option value="">Choose Customer</option>
     	<option ng-repeat="customer in Customers.customers" ng-value='customer.name'>{{customer.name}}</option>
-
     </select></label>
  </div> 
    <input type='hidden' value='33' ng-model='Orders.newOrder.addDate'>
 <div ng-controller='productsController as Products'>
      <label>Order Name: 
-<!--     <select ng-model='Orders.newOrder.pname' ng-options="product.name for product in Products.products" ng-focus="Products.getMax(Orders.newOrder)">
- -->     
-          <select ng-model='Orders.newOrder.pname' ng-value='product.name' ng-options="product.name for product in Products.products" ng-focus="Products.getMax(Orders.newOrder)">
-
-     	<!-- <option ng-repeat='product in Products.products' ng-value='product.name' ng-click="Products.getMax(product)">{{product.name}}</option> --> 
+          <select ng-model='Orders.newOrder.pname' ng-value='product.name' ng-options="product.name for product in Products.products">
     </select></label><br>
-
-
     <span ng-show="Orders.newOrder.pname">There are {{Orders.newOrder.pname.icount}} {{Orders.newOrder.pname.name}}(s) available</span><br>
-    <label>Quantity: <input type='number' ng-model='Orders.newOrder.count' min='1' max="{{Orders.newOrder.pname.icount}}"></label><br>
-    
+    <label>Quantity: <input type='number' ng-model='Orders.newOrder.count' min='1' max="{{Orders.newOrder.pname.icount}}"></label><br>  
     <input type='submit' value='Place Order' ng-click='Orders.addOrder(Orders.newOrder)'>
 </div>
 </form>

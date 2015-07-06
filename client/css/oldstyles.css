@@ -43,3 +43,16 @@ textarea{
 	font-size: 13pt;
 	font-family: sans-serif;
 }
+
+#nav-mobile{
+
+}
+
+#nav-mobile li{
+display: inline;
+border-right: 1px solid;
+}
+
+#nav-mobile li:last-child{
+	border-right: none;
+}
