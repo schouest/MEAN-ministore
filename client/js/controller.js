@@ -53,7 +53,7 @@ ministore_App.controller('ordersController', function (orderFactory){
                 that.error_txt = 'ERROR: Name left blank';
                 return false;
               }
-              if(that.newOrder.pname == undefined){
+              if(that.newOrder.pname.name == undefined){
                 console.log('ERROR: NO PRODUCT SELECTED');
                 that.error_txt = 'ERROR: Product left blank';
                 return false;
@@ -63,7 +63,9 @@ ministore_App.controller('ordersController', function (orderFactory){
                 that.error_txt = 'ERROR: Invalid Quantity';
                 return false;
               }
-              if(that.orders[i].pname == that.newOrder.pname
+              //console.log('oldorder pname',that.orders[i].pname)
+              //console.log('neworder pname',that.newOrder.pname)
+              if(that.orders[i].pname == that.newOrder.pname.name
                 && that.orders[i].cname == that.newOrder.cname){
                 console.log("ERROR: USER ALREADY PLACED ORDER");
                 that.error_txt = 'ERROR: User already placed order for that item';
@@ -72,12 +74,22 @@ ministore_App.controller('ordersController', function (orderFactory){
         }
 
         that.newOrder.addDate = new Date();
+
+        that.newOrder.pname = that.newOrder.pname.name;
+        //console.log('pname in client controller ',that.newOrder.pname)
+
+
+
+
+
         orderFactory.addOrder(that.newOrder, function (){
               that.newOrder = {};// clear the form values
                orderFactory.getOrders(function (data){
                   that.orders = data;
               })
               getProducts();
+        that.hidecount = true; //hide now outdated quantity of selected item !!!! doesn't work
+
    
         })
 
@@ -133,13 +145,13 @@ ministore_App.controller('productsController', function (productFactory){
               })  
         })
         that.error_txt = '';//reset error text
-        that.hidecount = true; //hide now outdated quantity of selected item !!!! doesn't work
 
     }
 
     that.hidecount = true;
     that.getMax = function(param){
-      that.invcount = param;
+      //console.log('Orders.newOrder= ',param);
+      //that.invcount = param;
       that.hidecount = false;
     }
 

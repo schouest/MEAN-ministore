@@ -18,11 +18,12 @@ module.exports = (function() {
     add: function(req, res) {
 
         var newOrder = new Order(req.body)
-
+       // console.log('newOrder in controller =', newOrder);
         Product.find({name: newOrder.pname}, function(err, results) {
             if(err){
                 console.log(err);
             } else{
+               // console.log('results= ', results);
                 if(results[0].icount < newOrder.count){
                     console.log('ERROR: BUY EXCEEDS TOTAL STOCK');
                 }
@@ -35,13 +36,14 @@ module.exports = (function() {
                             console.log('got an error');
                         }
                         else{
+                            //console.log('reached saving to DB stage');
                             newOrder.save(function(err) {
                                 if(err){
                                     console.log(err);
                                 } else{
                                     res.redirect('/');
                                 }
-                             })  
+                             }) 
                         }
                     });
    

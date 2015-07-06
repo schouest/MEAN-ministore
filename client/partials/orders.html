@@ -1,7 +1,7 @@
 <div ng-controller='ordersController as Orders'>
 <h3>Add a New Order</h3>
 <div ng-controller='customersController as Customers'>
-<form>
+<form name='form'>
     <h1><span ng-bind='Orders.error_txt'></span></h1>
     <label>Customer Name: <select ng-model='Orders.newOrder.cname'>
     	<option value="">Choose Customer</option>
@@ -12,12 +12,18 @@
    <input type='hidden' value='33' ng-model='Orders.newOrder.addDate'>
 <div ng-controller='productsController as Products'>
      <label>Order Name: 
-    <select ng-model='Orders.newOrder.pname'>
-     	<option ng-repeat='product in Products.products' ng-value='product.name' ng-click="Products.getMax(product.icount)">{{product.name}}</option> 
+<!--     <select ng-model='Orders.newOrder.pname' ng-options="product.name for product in Products.products" ng-focus="Products.getMax(Orders.newOrder)">
+ -->     
+          <select ng-model='Orders.newOrder.pname' ng-value='product.name' ng-options="product.name for product in Products.products" ng-focus="Products.getMax(Orders.newOrder)">
+
+     	<!-- <option ng-repeat='product in Products.products' ng-value='product.name' ng-click="Products.getMax(product)">{{product.name}}</option> --> 
     </select></label><br>
-    <span ng-hide='Products.hidecount'>There are {{Products.invcount}} {{Orders.newOrder.pname}}(s) available</span><br>
-    <label>Quantity: <input type='number' ng-model='Orders.newOrder.count' min='1' max="{{Products.invcount}}"></label><br>
-    <input type='submit' value='Place Order' ng-click='Orders.addOrder()'>
+
+
+    <span ng-show="Orders.newOrder.pname">There are {{Orders.newOrder.pname.icount}} {{Orders.newOrder.pname.name}}(s) available</span><br>
+    <label>Quantity: <input type='number' ng-model='Orders.newOrder.count' min='1' max="{{Orders.newOrder.pname.icount}}"></label><br>
+    
+    <input type='submit' value='Place Order' ng-click='Orders.addOrder(Orders.newOrder)'>
 </div>
 </form>
 <br><label id='searchbar'>Search: <input type='text' ng-model='filter_name' placeholder='filter results'></label>
